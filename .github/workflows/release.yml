@@ -32,5 +32,5 @@ jobs:
           version: 1.25.1
           args: release --clean ${{ env.flags }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          HOMEBREW_TAP_GITHUB_TOKEN: ${{ secrets.HOMEBREW_TAP_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          HOMEBREW_TAP_GITHUB_TOKEN: ${{ secrets.GH_PAT }}
