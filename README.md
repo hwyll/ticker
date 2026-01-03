@@ -247,7 +247,7 @@ golangci-lint run
 
 * [bubbletea](https://github.com/charmbracelet/bubbletea) - terminal UI framework
 * [termenv](https://github.com/muesli/termenv) - color and styling for the terminal
-* [term-grid](https://github.com/hwyll/term-grid) - grid layout library terminal UIs
+* [term-grid](https://github.com/achannarasappa/term-grid) - grid layout library terminal UIs
 
 ## Related Tools
 

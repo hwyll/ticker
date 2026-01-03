@@ -5,7 +5,7 @@ import (
 	"sync"
 	"time"
 
-	grid "github.com/hwyll/term-grid"
+	grid "github.com/achannarasappa/term-grid"
 	"github.com/hwyll/ticker/v5/internal/asset"
 	c "github.com/hwyll/ticker/v5/internal/common"
 	mon "github.com/hwyll/ticker/v5/internal/monitor"

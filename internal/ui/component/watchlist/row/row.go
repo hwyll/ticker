@@ -9,7 +9,7 @@ import (
 	c "github.com/hwyll/ticker/v5/internal/common"
 	u "github.com/hwyll/ticker/v5/internal/ui/util"
 
-	grid "github.com/hwyll/term-grid"
+	grid "github.com/achannarasappa/term-grid"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
 )

@@ -4,7 +4,7 @@ go 1.24.3
 
 require (
 	github.com/acarl005/stripansi v0.0.0-20180116102854-5a71ef0e047d
-	github.com/hwyll/term-grid v0.2.4
+	github.com/achannarasappa/term-grid v0.2.4
 	github.com/adrg/xdg v0.5.3
 	github.com/charmbracelet/bubbles v0.21.0
 	github.com/charmbracelet/bubbletea v1.3.6
