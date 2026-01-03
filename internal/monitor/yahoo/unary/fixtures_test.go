@@ -1,7 +1,7 @@
 package unary_test
 
 import (
-	"github.com/achannarasappa/ticker/v5/internal/monitor/yahoo/unary"
+	"github.com/hwyll/ticker/v5/internal/monitor/yahoo/unary"
 )
 
 var (

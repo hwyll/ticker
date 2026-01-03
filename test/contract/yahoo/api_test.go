@@ -4,8 +4,8 @@ import (
 	"os"
 	"path/filepath"
 
-	c "github.com/achannarasappa/ticker/v5/internal/common"
-	unary "github.com/achannarasappa/ticker/v5/internal/monitor/yahoo/unary"
+	c "github.com/hwyll/ticker/v5/internal/common"
+	unary "github.com/hwyll/ticker/v5/internal/monitor/yahoo/unary"
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"

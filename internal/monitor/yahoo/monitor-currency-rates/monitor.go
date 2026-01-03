@@ -5,8 +5,8 @@ import (
 	"errors"
 	"sync"
 
-	c "github.com/achannarasappa/ticker/v5/internal/common"
-	"github.com/achannarasappa/ticker/v5/internal/monitor/yahoo/unary"
+	c "github.com/hwyll/ticker/v5/internal/common"
+	"github.com/hwyll/ticker/v5/internal/monitor/yahoo/unary"
 )
 
 // MonitorCurrencyRatesYahoo represents a Yahoo Finance monitor

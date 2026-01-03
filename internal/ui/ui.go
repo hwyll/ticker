@@ -5,15 +5,15 @@ import (
 	"sync"
 	"time"
 
-	grid "github.com/achannarasappa/term-grid"
-	"github.com/achannarasappa/ticker/v5/internal/asset"
-	c "github.com/achannarasappa/ticker/v5/internal/common"
-	mon "github.com/achannarasappa/ticker/v5/internal/monitor"
-	"github.com/achannarasappa/ticker/v5/internal/ui/component/summary"
-	"github.com/achannarasappa/ticker/v5/internal/ui/component/watchlist"
-	"github.com/achannarasappa/ticker/v5/internal/ui/component/watchlist/row"
+	grid "github.com/hwyll/term-grid"
+	"github.com/hwyll/ticker/v5/internal/asset"
+	c "github.com/hwyll/ticker/v5/internal/common"
+	mon "github.com/hwyll/ticker/v5/internal/monitor"
+	"github.com/hwyll/ticker/v5/internal/ui/component/summary"
+	"github.com/hwyll/ticker/v5/internal/ui/component/watchlist"
+	"github.com/hwyll/ticker/v5/internal/ui/component/watchlist/row"
 
-	util "github.com/achannarasappa/ticker/v5/internal/ui/util"
+	util "github.com/hwyll/ticker/v5/internal/ui/util"
 
 	"github.com/charmbracelet/bubbles/viewport"
 	tea "github.com/charmbracelet/bubbletea"

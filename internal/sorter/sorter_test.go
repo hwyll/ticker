@@ -1,8 +1,8 @@
 package sorter_test
 
 import (
-	c "github.com/achannarasappa/ticker/v5/internal/common"
-	. "github.com/achannarasappa/ticker/v5/internal/sorter"
+	c "github.com/hwyll/ticker/v5/internal/common"
+	. "github.com/hwyll/ticker/v5/internal/sorter"
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"

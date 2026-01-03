@@ -3,9 +3,9 @@ package summary_test
 import (
 	"strings"
 
-	"github.com/achannarasappa/ticker/v5/internal/asset"
-	c "github.com/achannarasappa/ticker/v5/internal/common"
-	. "github.com/achannarasappa/ticker/v5/internal/ui/component/summary"
+	"github.com/hwyll/ticker/v5/internal/asset"
+	c "github.com/hwyll/ticker/v5/internal/common"
+	. "github.com/hwyll/ticker/v5/internal/ui/component/summary"
 
 	"github.com/acarl005/stripansi"
 	tea "github.com/charmbracelet/bubbletea"

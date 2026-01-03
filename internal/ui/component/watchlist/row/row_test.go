@@ -3,8 +3,8 @@ package row_test
 import (
 	"strings"
 
-	c "github.com/achannarasappa/ticker/v5/internal/common"
-	"github.com/achannarasappa/ticker/v5/internal/ui/component/watchlist/row"
+	c "github.com/hwyll/ticker/v5/internal/common"
+	"github.com/hwyll/ticker/v5/internal/ui/component/watchlist/row"
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"

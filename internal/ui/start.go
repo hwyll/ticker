@@ -1,8 +1,8 @@
 package ui
 
 import (
-	c "github.com/achannarasappa/ticker/v5/internal/common"
-	mon "github.com/achannarasappa/ticker/v5/internal/monitor"
+	c "github.com/hwyll/ticker/v5/internal/common"
+	mon "github.com/hwyll/ticker/v5/internal/monitor"
 	tea "github.com/charmbracelet/bubbletea"
 )
 

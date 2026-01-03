@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	c "github.com/achannarasappa/ticker/v5/internal/common"
+	c "github.com/hwyll/ticker/v5/internal/common"
 )
 
 const (

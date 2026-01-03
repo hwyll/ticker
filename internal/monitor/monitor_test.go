@@ -13,10 +13,10 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	c "github.com/achannarasappa/ticker/v5/internal/common"
-	"github.com/achannarasappa/ticker/v5/internal/monitor"
-	"github.com/achannarasappa/ticker/v5/internal/monitor/yahoo/unary"
-	testWs "github.com/achannarasappa/ticker/v5/test/websocket"
+	c "github.com/hwyll/ticker/v5/internal/common"
+	"github.com/hwyll/ticker/v5/internal/monitor"
+	"github.com/hwyll/ticker/v5/internal/monitor/yahoo/unary"
+	testWs "github.com/hwyll/ticker/v5/test/websocket"
 	"github.com/onsi/gomega/ghttp"
 )
 

@@ -8,10 +8,10 @@ import (
 	"sync"
 	"time"
 
-	c "github.com/achannarasappa/ticker/v5/internal/common"
-	poller "github.com/achannarasappa/ticker/v5/internal/monitor/coinbase/monitor-price/poller"
-	streamer "github.com/achannarasappa/ticker/v5/internal/monitor/coinbase/monitor-price/streamer"
-	unary "github.com/achannarasappa/ticker/v5/internal/monitor/coinbase/unary"
+	c "github.com/hwyll/ticker/v5/internal/common"
+	poller "github.com/hwyll/ticker/v5/internal/monitor/coinbase/monitor-price/poller"
+	streamer "github.com/hwyll/ticker/v5/internal/monitor/coinbase/monitor-price/streamer"
+	unary "github.com/hwyll/ticker/v5/internal/monitor/coinbase/unary"
 )
 
 const (

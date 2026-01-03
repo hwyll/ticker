@@ -1,8 +1,8 @@
 <p>
-    <a href="https://github.com/achannarasappa/ticker/releases"><img src="https://img.shields.io/github/v/release/achannarasappa/ticker" alt="Latest Release"></a>
-    <a href="https://github.com/achannarasappa/ticker/actions"><img src="https://github.com/achannarasappa/ticker/workflows/test/badge.svg" alt="Build Status"></a>
-    <a href='https://coveralls.io/github/achannarasappa/ticker?branch=master'><img src='https://coveralls.io/repos/github/achannarasappa/ticker/badge.svg?branch=master' alt='Coverage Status' /></a>
-    <a href='https://goreportcard.com/badge/github.com/achannarasappa/ticker'><img src='https://goreportcard.com/badge/github.com/achannarasappa/ticker' alt='Report Card' /></a>
+    <a href="https://github.com/hwyll/ticker/releases"><img src="https://img.shields.io/github/v/release/hwyll/ticker" alt="Latest Release"></a>
+    <a href="https://github.com/hwyll/ticker/actions"><img src="https://github.com/hwyll/ticker/workflows/test/badge.svg" alt="Build Status"></a>
+    <a href='https://coveralls.io/github/hwyll/ticker?branch=master'><img src='https://coveralls.io/repos/github/hwyll/ticker/badge.svg?branch=master' alt='Coverage Status' /></a>
+    <a href='https://goreportcard.com/badge/github.com/hwyll/ticker'><img src='https://goreportcard.com/badge/github.com/hwyll/ticker' alt='Report Card' /></a>
 </p>
 
 <h1 align="center">Ticker</h2>
@@ -22,16 +22,16 @@ Terminal stock & crypto price watcher and position tracker
 
 ## Install
 
-Download the pre-compiled binaries from the [releases page](https://github.com/achannarasappa/ticker/releases) and copy to a location in `PATH` or see quick installs below
+Download the pre-compiled binaries from the [releases page](https://github.com/hwyll/ticker/releases) and copy to a location in `PATH` or see quick installs below
 
 **homebrew**
 ```
-brew install achannarasappa/tap/ticker
+brew install hwyll/tap/ticker
 ```
 
 **linux**
 ```sh
-curl -Ls https://api.github.com/repos/achannarasappa/ticker/releases/latest \
+curl -Ls https://api.github.com/repos/hwyll/ticker/releases/latest \
 | grep -wo "https.*linux-amd64*.tar.gz" \
 | wget -qi - \
 && tar -xvf ticker*.tar.gz ticker \
@@ -41,12 +41,12 @@ curl -Ls https://api.github.com/repos/achannarasappa/ticker/releases/latest \
 
 **windows**
 ```
-winget install -e --id achannarasappa.ticker
+winget install -e --id hwyll.ticker
 ```
 
 **docker**
 ```sh
-docker run -it --rm achannarasappa/ticker
+docker run -it --rm hwyll/ticker
 ```
 
 Note: config file can be mounted from the host machine by using a bind mount with `-v ~/.ticker.yaml:/.ticker.yaml`
@@ -166,7 +166,7 @@ Watchlists and lots can be grouped in `.ticker.yml` under the `groups` property.
 
 * *none* - symbols with no suffix will default to Yahoo Finance as the data source
 * `.X` - symbols with this suffix are shorthand symbols that are specific to ticker and intended to provide more concise and familiar symbols for popular assets (e.g. using `SOL.X` rather than `SOLANA.CG`)
-  * The full list of ticker symbols can be found [here](https://github.com/achannarasappa/ticker-static/blob/master/symbols.csv). Initial values are populated with the top cryptocurrencies by volume on Coinbase at the time of update
+  * The full list of ticker symbols can be found [here](https://github.com/hwyll/ticker-static/blob/master/symbols.csv). Initial values are populated with the top cryptocurrencies by volume on Coinbase at the time of update
 * `.CB` - symbols with this suffix will use Coinbase as the data source. The symbol can be found by searching for the asset on [Coinbase](https://www.coinbase.com/explore/s/listed) and finding the symbol for the asset. (e.g. for Starknet check the [market page](https://www.coinbase.com/advanced-trade/spot/STRK-USD) to find the symbol `STRK` and set the symbol to `STRK.CB` in ticker).
 
 Note: Coincap (`.CC`) and CoinGecko (`.CG`) are no longer supported after v5.0.0
@@ -247,7 +247,7 @@ golangci-lint run
 
 * [bubbletea](https://github.com/charmbracelet/bubbletea) - terminal UI framework
 * [termenv](https://github.com/muesli/termenv) - color and styling for the terminal
-* [term-grid](https://github.com/achannarasappa/term-grid) - grid layout library terminal UIs
+* [term-grid](https://github.com/hwyll/term-grid) - grid layout library terminal UIs
 
 ## Related Tools
 
