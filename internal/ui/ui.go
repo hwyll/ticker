@@ -154,19 +154,19 @@ func (m *Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			fallthrough
 		case "q":
 			return m, tea.Quit
-		case "up":
+		case "k":
 			m.viewport, cmd = m.viewport.Update(msg)
 
 			return m, cmd
-		case "down":
+		case "j":
 			m.viewport, cmd = m.viewport.Update(msg)
 
 			return m, cmd
-		case "pgup":
+		case "ctrl+b":
 			m.viewport.PageUp()
 
 			return m, nil
-		case "pgdown":
+		case "ctrl+f":
 			m.viewport.PageDown()
 
 			return m, nil
