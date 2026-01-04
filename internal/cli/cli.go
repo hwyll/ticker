@@ -249,12 +249,13 @@ func getConfigPath(fs afero.Fs, configPathOption string) (string, error) {
 	v.SetFs(fs)
 	v.SetConfigType("yaml")
 	v.AddConfigPath(home)                                    // ~/.ticker.yaml
+	v.AddConfigPath(".")                                     // ./.ticker.yaml
 	v.AddConfigPath(filepath.Join(home, ".config/ticker"))   // ~/.config/ticker/ticker.yaml
-	v.SetConfigName("ticker")
+	v.SetConfigName(".ticker")
 	
 	err = v.ReadInConfig()
 	if err != nil {
-		// Also try with dot prefix for backwards compatibility with ~/.ticker.yaml
+		// Also try without dot prefix
 		v.SetConfigName(".ticker")
 		err = v.ReadInConfig()
 		if err != nil {
