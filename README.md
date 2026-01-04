@@ -29,44 +29,6 @@ Download the pre-compiled binaries from the [releases page](https://github.com/h
 brew install hwyll/tap/ticker
 ```
 
-**linux**
-```sh
-curl -Ls https://api.github.com/repos/hwyll/ticker/releases/latest \
-| grep -wo "https.*linux-amd64*.tar.gz" \
-| wget -qi - \
-&& tar -xvf ticker*.tar.gz ticker \
-&& chmod +x ./ticker \
-&& sudo mv ticker /usr/local/bin/
-```
-
-**windows**
-```
-winget install -e --id hwyll.ticker
-```
-
-**docker**
-```sh
-docker run -it --rm hwyll/ticker
-```
-
-Note: config file can be mounted from the host machine by using a bind mount with `-v ~/.ticker.yaml:/.ticker.yaml`
-
-**snap**
-```sh
-sudo snap install ticker
-sudo snap connect ticker:ticker-config
-```
-
-Note: config file will need to be set with `--config $HOME/ticker.yaml` since Snap does not allow access to dotfiles
-
-### Third-party repositories
-These repositories are maintained by a third-party and may not have the latest versions available
-
-**MacPorts**
-```
-sudo port selfupdate
-sudo port install ticker
-```
 
 ## Quick Start
 
