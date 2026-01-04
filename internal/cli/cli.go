@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"path/filepath"
 	"strings"
 	"time"
 
@@ -12,7 +13,6 @@ import (
 	c "github.com/hwyll/ticker/internal/common"
 	"github.com/hwyll/ticker/internal/ui/util"
 
-	"github.com/adrg/xdg"
 	"github.com/mitchellh/go-homedir"
 	"github.com/spf13/afero"
 	"github.com/spf13/cobra"
