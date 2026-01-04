@@ -501,7 +501,10 @@ var _ = Describe("Cli", func() {
 						outputConfig, outputErr := GetConfig(depLocal, inputConfigPath, cli.Options{})
 
 						Expect(outputErr).To(BeNil())
-						Expect(outputConfig).To(Equal(c.Config{RefreshInterval: 5}))
+						Expect(outputConfig).To(Equal(c.Config{
+							RefreshInterval: 5,
+							KeyBindings: c.DefaultKeyBindings(),
+						}))
 					})
 				})
 				When("there is a config file in the home directory", func() {
