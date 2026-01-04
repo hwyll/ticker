@@ -256,7 +256,7 @@ func getConfigPath(fs afero.Fs, configPathOption string) (string, error) {
 	err = v.ReadInConfig()
 	if err != nil {
 		// Also try without dot prefix
-		v.SetConfigName(".ticker")
+		v.SetConfigName("ticker")
 		err = v.ReadInConfig()
 		if err != nil {
 			return "", fmt.Errorf("invalid config: %w", err)
