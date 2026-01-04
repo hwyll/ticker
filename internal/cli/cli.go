@@ -238,11 +238,13 @@ func GetConfig(dep c.Dependencies, configPath string, options Options) (c.Config
 func getConfigPath(fs afero.Fs, configPathOption string) (string, error) {
 	var err error
 	if configPathOption != "" {
+		fmt.Printf("DEBUG: Using explicit config path: %s\n", configPathOption)
 		return configPathOption, nil
 	}
-
 	home, _ := homedir.Dir()
-
+	fmt.Printf("DEBUG: Home dir: %s\n", home)
+	fmt.Printf("DEBUG: XDG ConfigHome: %s\n", xdg.ConfigHome)
+	
 	v := viper.New()
 	v.SetFs(fs)
 	v.SetConfigType("yaml")
@@ -251,13 +253,17 @@ func getConfigPath(fs afero.Fs, configPathOption string) (string, error) {
 	v.AddConfigPath(xdg.ConfigHome)
 	v.AddConfigPath(xdg.ConfigHome + "/ticker")
 	v.SetConfigName(".ticker")
+	
+	fmt.Printf("DEBUG: About to call ReadInConfig\n")
 	err = v.ReadInConfig()
-
 	if err != nil {
+		fmt.Printf("DEBUG: ReadInConfig error: %v\n", err)
 		return "", fmt.Errorf("invalid config: %w", err)
 	}
-
-	return v.ConfigFileUsed(), nil
+	
+	configPath := v.ConfigFileUsed()
+	fmt.Printf("DEBUG: Config file used: %s\n", configPath)
+	return configPath, nil
 }
 
 func getRefreshInterval(optionsRefreshInterval int, configRefreshInterval int) int {
