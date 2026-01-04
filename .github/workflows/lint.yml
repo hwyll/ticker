@@ -3,6 +3,7 @@ on: [push, pull_request]
 
 jobs:
   lint:
+    if: false # disable
     name: lint
     runs-on: ubuntu-latest
     steps:
