@@ -6,8 +6,8 @@ import (
 
 	"net/http"
 
-	"github.com/hwyll/ticker/v5/internal/cli/symbol"
-	c "github.com/hwyll/ticker/v5/internal/common"
+	"github.com/hwyll/ticker/internal/cli/symbol"
+	c "github.com/hwyll/ticker/internal/common"
 	"github.com/onsi/gomega/ghttp"
 )
 

@@ -4,8 +4,8 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	. "github.com/hwyll/ticker/v5/internal/asset"
-	c "github.com/hwyll/ticker/v5/internal/common"
+	. "github.com/hwyll/ticker/internal/asset"
+	c "github.com/hwyll/ticker/internal/common"
 )
 
 var _ = Describe("Asset", func() {

@@ -6,10 +6,10 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/hwyll/ticker/v5/internal/asset"
-	c "github.com/hwyll/ticker/v5/internal/common"
-	mon "github.com/hwyll/ticker/v5/internal/monitor"
-	"github.com/hwyll/ticker/v5/internal/ui/util"
+	"github.com/hwyll/ticker/internal/asset"
+	c "github.com/hwyll/ticker/internal/common"
+	mon "github.com/hwyll/ticker/internal/monitor"
+	"github.com/hwyll/ticker/internal/ui/util"
 
 	"github.com/spf13/cobra"
 )

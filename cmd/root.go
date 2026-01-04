@@ -6,10 +6,10 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/hwyll/ticker/v5/internal/cli"
-	c "github.com/hwyll/ticker/v5/internal/common"
-	"github.com/hwyll/ticker/v5/internal/print"
-	"github.com/hwyll/ticker/v5/internal/ui"
+	"github.com/hwyll/ticker/internal/cli"
+	c "github.com/hwyll/ticker/internal/common"
+	"github.com/hwyll/ticker/internal/print"
+	"github.com/hwyll/ticker/internal/ui"
 )
 
 //nolint:gochecknoglobals

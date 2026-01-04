@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"strings"
 
-	c "github.com/hwyll/ticker/v5/internal/common"
-	s "github.com/hwyll/ticker/v5/internal/sorter"
-	row "github.com/hwyll/ticker/v5/internal/ui/component/watchlist/row"
-	u "github.com/hwyll/ticker/v5/internal/ui/util"
+	c "github.com/hwyll/ticker/internal/common"
+	s "github.com/hwyll/ticker/internal/sorter"
+	row "github.com/hwyll/ticker/internal/ui/component/watchlist/row"
+	u "github.com/hwyll/ticker/internal/ui/util"
 
 	tea "github.com/charmbracelet/bubbletea"
 )

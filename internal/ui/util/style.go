@@ -4,7 +4,7 @@ import (
 	"math"
 	"regexp"
 
-	c "github.com/hwyll/ticker/v5/internal/common"
+	c "github.com/hwyll/ticker/internal/common"
 	"github.com/lucasb-eyer/go-colorful"
 	te "github.com/muesli/termenv"
 )

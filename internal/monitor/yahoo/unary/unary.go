@@ -7,7 +7,7 @@ import (
 	"net/url"
 	"strings"
 
-	c "github.com/hwyll/ticker/v5/internal/common"
+	c "github.com/hwyll/ticker/internal/common"
 )
 
 // UnaryAPI is a client for the API

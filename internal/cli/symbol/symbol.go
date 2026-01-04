@@ -7,7 +7,7 @@ import (
 	"io"
 	"net/http"
 
-	c "github.com/hwyll/ticker/v5/internal/common"
+	c "github.com/hwyll/ticker/internal/common"
 )
 
 type SymbolSourceMap struct { //nolint:golint,revive

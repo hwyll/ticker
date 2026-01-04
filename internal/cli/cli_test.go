@@ -18,9 +18,9 @@ import (
 	"github.com/spf13/afero"
 	"github.com/spf13/cobra"
 
-	"github.com/hwyll/ticker/v5/internal/cli"
-	. "github.com/hwyll/ticker/v5/internal/cli"
-	c "github.com/hwyll/ticker/v5/internal/common"
+	"github.com/hwyll/ticker/internal/cli"
+	. "github.com/hwyll/ticker/internal/cli"
+	c "github.com/hwyll/ticker/internal/common"
 )
 
 func getStdout(fn func()) string {

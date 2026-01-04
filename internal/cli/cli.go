@@ -8,9 +8,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/hwyll/ticker/v5/internal/cli/symbol"
-	c "github.com/hwyll/ticker/v5/internal/common"
-	"github.com/hwyll/ticker/v5/internal/ui/util"
+	"github.com/hwyll/ticker/internal/cli/symbol"
+	c "github.com/hwyll/ticker/internal/common"
+	"github.com/hwyll/ticker/internal/ui/util"
 
 	"github.com/adrg/xdg"
 	"github.com/mitchellh/go-homedir"

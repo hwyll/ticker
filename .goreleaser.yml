@@ -10,7 +10,7 @@ builds:
     goos:
       - darwin
     ldflags:
-      - -s -w -X 'github.com/hwyll/ticker/v5/cmd.Version={{.Version}}'
+      - -s -w -X 'github.com/hwyll/ticker/cmd.Version={{.Version}}'
 archives:
   - id: release
     format: tar.gz

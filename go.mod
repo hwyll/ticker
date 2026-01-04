@@ -1,4 +1,4 @@
-module github.com/hwyll/ticker/v5
+module github.com/hwyll/ticker
 
 go 1.24.3
 

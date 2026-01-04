@@ -1,7 +1,7 @@
 package asset
 
 import (
-	c "github.com/hwyll/ticker/v5/internal/common"
+	c "github.com/hwyll/ticker/internal/common"
 )
 
 // currencyRateByUse represents the currency conversion rate for each use case

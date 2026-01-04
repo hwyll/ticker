@@ -3,7 +3,7 @@ package sorter
 import (
 	"sort"
 
-	c "github.com/hwyll/ticker/v5/internal/common"
+	c "github.com/hwyll/ticker/internal/common"
 )
 
 // Sorter represents a function that sorts quotes

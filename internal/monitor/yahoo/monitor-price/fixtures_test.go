@@ -1,7 +1,7 @@
 package monitorPriceYahoo_test
 
 import (
-	"github.com/hwyll/ticker/v5/internal/monitor/yahoo/unary"
+	"github.com/hwyll/ticker/internal/monitor/yahoo/unary"
 )
 
 var (

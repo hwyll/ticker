@@ -4,7 +4,7 @@ import (
 	"math"
 	"strconv"
 
-	c "github.com/hwyll/ticker/v5/internal/common"
+	c "github.com/hwyll/ticker/internal/common"
 )
 
 func getPrecision(f float64) int {

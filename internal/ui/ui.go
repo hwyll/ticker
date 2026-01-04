@@ -6,14 +6,14 @@ import (
 	"time"
 
 	grid "github.com/achannarasappa/term-grid"
-	"github.com/hwyll/ticker/v5/internal/asset"
-	c "github.com/hwyll/ticker/v5/internal/common"
-	mon "github.com/hwyll/ticker/v5/internal/monitor"
-	"github.com/hwyll/ticker/v5/internal/ui/component/summary"
-	"github.com/hwyll/ticker/v5/internal/ui/component/watchlist"
-	"github.com/hwyll/ticker/v5/internal/ui/component/watchlist/row"
+	"github.com/hwyll/ticker/internal/asset"
+	c "github.com/hwyll/ticker/internal/common"
+	mon "github.com/hwyll/ticker/internal/monitor"
+	"github.com/hwyll/ticker/internal/ui/component/summary"
+	"github.com/hwyll/ticker/internal/ui/component/watchlist"
+	"github.com/hwyll/ticker/internal/ui/component/watchlist/row"
 
-	util "github.com/hwyll/ticker/v5/internal/ui/util"
+	util "github.com/hwyll/ticker/internal/ui/util"
 
 	"github.com/charmbracelet/bubbles/viewport"
 	tea "github.com/charmbracelet/bubbletea"

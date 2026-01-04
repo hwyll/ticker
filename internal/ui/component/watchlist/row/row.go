@@ -6,8 +6,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	c "github.com/hwyll/ticker/v5/internal/common"
-	u "github.com/hwyll/ticker/v5/internal/ui/util"
+	c "github.com/hwyll/ticker/internal/common"
+	u "github.com/hwyll/ticker/internal/ui/util"
 
 	grid "github.com/achannarasappa/term-grid"
 	tea "github.com/charmbracelet/bubbletea"
