@@ -357,55 +357,81 @@ func (m *Model) View() string {
 }
 
 func footer(width int, time string, groupSelectedName string, currentSort string, keyBindings c.KeyBindings) string {
+	logoText := " ticker "
+
+	// Early return for very narrow terminals
 	if width < 80 {
-		return styleLogo(" ticker ")
+		return styleLogo(logoText)
 	}
 
+	// Truncate long group names
 	if len(groupSelectedName) > 12 {
 		groupSelectedName = groupSelectedName[:12]
 	}
-
-	// Get display name for current sort
-	sortDisplayName := "change"
-	switch currentSort {
-	case "alpha":
-		sortDisplayName = "alpha"
-	case "value":
-		sortDisplayName = "value"
-	case "user":
-		sortDisplayName = "user"
-	}
-
-	// Build help text from configured key bindings
-	quitKey := keyBindings.Quit[0]
-	scrollUpKey := keyBindings.ScrollUp[0]
-	scrollDownKey := keyBindings.ScrollDown[0]
-	nextGroupKey := keyBindings.NextGroup[0]
-	changeSortKey := keyBindings.ChangeSort[0]
-
-	baseHelpText := fmt.Sprintf(" %s: exit %s: scroll up %s: scroll down %s: change group", 
-		quitKey, scrollUpKey, scrollDownKey, nextGroupKey)
-	sortHelpText := fmt.Sprintf(" %s: change sort (%s)", changeSortKey, sortDisplayName)
 	
-	// Calculate width dynamically based on actual help text length
-	baseHelpWidth := len(baseHelpText)
-	sortHelpWidth := len(sortHelpText)
-	sortHelpMinWidth := 8 + 14 + baseHelpWidth + sortHelpWidth + 12 // logo + group + base + sort + time
+	// Build footer components
+	groupText := " " + groupSelectedName + " "
+	sortDisplayName := getSortDisplayName(currentSort)
+	helpText := buildHelpText(keyBindings, sortDisplayName)
 	
+	// Calculate minimum widths for responsive display
+	groupMinWidth := len(logoText) + len(groupText) + len(time)
+	helpMinWidth := groupMinWidth + len(helpText)
+	
+	// Center help text
+	centeredHelpText := centerText(helpText, width - groupMinWidth)
+
 	return grid.Render(grid.Grid{
 		Rows: []grid.Row{
 			{
 				Width: width,
 				Cells: []grid.Cell{
-					{Text: styleLogo(" ticker "), Width: 8},
-					{Text: styleGroup(" " + groupSelectedName + " "), Width: len(groupSelectedName) + 2, VisibleMinWidth: 95},
-					{Text: styleHelp(baseHelpText), Width: baseHelpWidth},
-					{Text: styleHelp(sortHelpText), Width: sortHelpWidth, VisibleMinWidth: sortHelpMinWidth},
-					{Text: styleHelp("↻  " + time), Align: grid.Right},
+					{Text: styleLogo(logoText), Width: len(logoText)},
+					{Text: styleGroup(groupText), Width: len(groupText), VisibleMinWidth: groupMinWidth},
+					{Text: styleHelp(centeredHelpText), Width: len(centeredHelpText), VisibleMinWidth: helpMinWidth},
+					{Text: styleHelp(time), Align: grid.Right},
 				},
 			},
 		},
 	})
+}
+
+// centerText centers text within a given width by adding left padding.
+// If the text is already wider than or equal to totalWidth, it returns the text unchanged.
+func centerText(text string, totalWidth int) string {
+	textLen := len(text)
+	if textLen >= totalWidth {
+		return text
+	}
+	leftPad := (totalWidth - textLen) / 2
+	return strings.Repeat(" ", leftPad) + text
+}
+
+// getSortDisplayName returns the display name for the current sort option
+func getSortDisplayName(currentSort string) string {
+	switch currentSort {
+	case "alpha":
+		return "alpha"
+	case "value":
+		return "value"
+	case "user":
+		return "user"
+	default:
+		return "change"
+	}
+}
+
+// buildHelpText creates the help text from configured key bindings
+func buildHelpText(keyBindings c.KeyBindings, sortDisplayName string) string {
+	return fmt.Sprintf(" | %s: exit | %s: scroll-up | %s: scroll-down | %s: next-group | %s: prev-group | %s: sort-by (%s) | ",
+		keyBindings.Quit[0],
+		keyBindings.ScrollUp[0],
+		keyBindings.ScrollDown[0],
+		keyBindings.NextGroup[0],
+		keyBindings.PrevGroup[0],
+		keyBindings.ChangeSort[0],
+		sortDisplayName,
+	)
 }
 
 func getVerticalMargin(config c.Config) int {
