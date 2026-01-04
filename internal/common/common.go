@@ -2,6 +2,7 @@ package common
 
 import (
 	"log"
+	"reflect"
 
 	"github.com/spf13/afero"
 )
@@ -32,6 +33,49 @@ type Config struct {
 	ColorScheme                       ConfigColorScheme  `yaml:"colors"`
 	AssetGroup                        []ConfigAssetGroup `yaml:"groups"`
 	Debug                             bool               `yaml:"debug"`
+	KeyBindings                       KeyBindings        `yaml:"key-bindings"` 
+
+}
+
+// KeyBindings represents configurable key bindings
+type KeyBindings struct {
+	Quit       []string `yaml:"quit"`
+	ScrollUp   []string `yaml:"scroll-up"`
+	ScrollDown []string `yaml:"scroll-down"`
+	PageUp     []string `yaml:"page-up"`
+	PageDown   []string `yaml:"page-down"`
+	NextGroup  []string `yaml:"next-group"`
+	PrevGroup  []string `yaml:"prev-group"`
+	ChangeSort []string `yaml:"change-sort"`
+}
+
+// DefaultKeyBindings returns the default key bindings
+func DefaultKeyBindings() KeyBindings {
+	return KeyBindings{
+		Quit:       []string{"q", "esc", "ctrl+c"},
+		ScrollUp:   []string{"k", "up"},
+		ScrollDown: []string{"j", "down"},
+		PageUp:     []string{"ctrl+b"},
+		PageDown:   []string{"ctrl+f"},
+		NextGroup:  []string{"tab"},
+		PrevGroup:  []string{"shift+tab"},
+		ChangeSort: []string{"s"},
+	}
+}
+
+func mergeKeyBindings(userBindings *c.KeyBindings, defaults c.KeyBindings) {
+	v := reflect.ValueOf(userBindings).Elem()
+	d := reflect.ValueOf(defaults)
+
+	for i := 0; i < v.NumField(); i++ {
+		field := v.Field(i)
+		defaultField := d.Field(i)
+		
+		// If the user's field is empty, use the default
+		if field.Len() == 0 {
+			field.Set(defaultField)
+		}
+	}
 }
 
 // ConfigColorScheme represents user defined color scheme

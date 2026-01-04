@@ -228,6 +228,10 @@ func GetConfig(dep c.Dependencies, configPath string, options Options) (c.Config
 	}
 	config.Sort = getStringOption(options.Sort, config.Sort)
 
+	// Merge default key bindings with user-provided ones
+	defaults := c.DefaultKeyBindings()
+	mergeKeyBindings(&config.KeyBindings, defaults)
+	
 	return config, nil
 }
 

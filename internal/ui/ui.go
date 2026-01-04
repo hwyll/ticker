@@ -119,6 +119,16 @@ func (m *Model) Init() tea.Cmd {
 	)
 }
 
+// keyMatches checks if a key matches any binding
+func keyMatches(key string, bindings []string) bool {
+	for _, binding := range bindings {
+		if key == binding {
+			return true
+		}
+	}
+	return false
+}
+
 // Update hook for bubbletea
 func (m *Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	var cmd tea.Cmd
@@ -126,9 +136,14 @@ func (m *Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 
 	case tea.KeyMsg:
-		switch msg.String() {
+		keyStr := msg.String()
+		keyBindings := m.ctx.Config.KeyBindings
+		
+		switch {
+		case keyMatches(keyStr, keyBindings.Quit):
+			return m, tea.Quit		
 
-		case "tab", "shift+tab":
+		case keyMatches(keyStr, keyBindings.NextGroup), keyMatches(keyStr, keyBindings.PrevGroup):
 			m.mu.Lock()
 
 			groupSelectedCursor := -1
@@ -148,29 +163,20 @@ func (m *Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			m.monitors.SetAssetGroup(m.ctx.Groups[m.groupSelectedIndex], m.versionVector) //nolint:errcheck
 
 			return m, tickImmediate(m.versionVector)
-		case "ctrl+c":
-			fallthrough
-		case "esc":
-			fallthrough
-		case "q":
-			return m, tea.Quit
-		case "k":
+			
+		case keyMatches(keyStr, keyBindings.ScrollUp), keyMatches(keyStr, keyBindings.ScrollDown):
 			m.viewport, cmd = m.viewport.Update(msg)
-
 			return m, cmd
-		case "j":
-			m.viewport, cmd = m.viewport.Update(msg)
 
-			return m, cmd
-		case "ctrl+b":
+		case keyMatches(keyStr, keyBindings.PageUp):
 			m.viewport.PageUp()
-
 			return m, nil
-		case "ctrl+f":
+
+		case keyMatches(keyStr, keyBindings.PageDown):
 			m.viewport.PageDown()
-
 			return m, nil
-		case "s":
+
+		case keyMatches(keyStr, keyBindings.ChangeSort):
 			m.mu.Lock()
 
 			// Cycle through sort options: default -> alpha -> value -> user -> default
@@ -194,7 +200,6 @@ func (m *Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			m.watchlist, cmd = m.watchlist.Update(watchlist.ChangeSortMsg(m.currentSort))
 
 			return m, cmd
-
 		}
 
 	case tea.WindowSizeMsg:
@@ -348,12 +353,10 @@ func (m *Model) View() string {
 
 	return viewSummary +
 		m.viewport.View() + "\n" +
-		footer(m.viewport.Width, m.lastUpdateTime, m.groupSelectedName, m.currentSort)
-
+		footer(m.viewport.Width, m.lastUpdateTime, m.groupSelectedName, m.currentSort, m.ctx.Config.KeyBindings)
 }
 
-func footer(width int, time string, groupSelectedName string, currentSort string) string {
-
+func footer(width int, time string, groupSelectedName string, currentSort string, keyBindings c.KeyBindings) string {
 	if width < 80 {
 		return styleLogo(" ticker ")
 	}
@@ -373,14 +376,22 @@ func footer(width int, time string, groupSelectedName string, currentSort string
 		sortDisplayName = "user"
 	}
 
-	baseHelpText := " q: exit ↑: scroll up ↓: scroll down ⭾: change group"
-	sortHelpText := " s: change sort (" + sortDisplayName + ")"
+	// Build help text from configured key bindings
+	quitKey := keyBindings.Quit[0]
+	scrollUpKey := keyBindings.ScrollUp[0]
+	scrollDownKey := keyBindings.ScrollDown[0]
+	nextGroupKey := keyBindings.NextGroup[0]
+	changeSortKey := keyBindings.ChangeSort[0]
 
-	// Calculate minimum width for sort help text to appear
-	// Longest sort text is "s: change sort (change)" = 24 characters
-	// Minimum width needed: logo(8) + max group(14) + base help(52) + sort help(24) + time(12) = 110
-	const sortHelpMinWidth = 114
-
+	baseHelpText := fmt.Sprintf(" %s: exit %s: scroll up %s: scroll down %s: change group", 
+		quitKey, scrollUpKey, scrollDownKey, nextGroupKey)
+	sortHelpText := fmt.Sprintf(" %s: change sort (%s)", changeSortKey, sortDisplayName)
+	
+	// Calculate width dynamically based on actual help text length
+	baseHelpWidth := len(baseHelpText)
+	sortHelpWidth := len(sortHelpText)
+	sortHelpMinWidth := 8 + 14 + baseHelpWidth + sortHelpWidth + 12 // logo + group + base + sort + time
+	
 	return grid.Render(grid.Grid{
 		Rows: []grid.Row{
 			{
@@ -388,14 +399,13 @@ func footer(width int, time string, groupSelectedName string, currentSort string
 				Cells: []grid.Cell{
 					{Text: styleLogo(" ticker "), Width: 8},
 					{Text: styleGroup(" " + groupSelectedName + " "), Width: len(groupSelectedName) + 2, VisibleMinWidth: 95},
-					{Text: styleHelp(baseHelpText), Width: 52},
-					{Text: styleHelp(sortHelpText), Width: len(sortHelpText), VisibleMinWidth: sortHelpMinWidth},
+					{Text: styleHelp(baseHelpText), Width: baseHelpWidth},
+					{Text: styleHelp(sortHelpText), Width: sortHelpWidth, VisibleMinWidth: sortHelpMinWidth},
 					{Text: styleHelp("↻  " + time), Align: grid.Right},
 				},
 			},
 		},
 	})
-
 }
 
 func getVerticalMargin(config c.Config) int {
