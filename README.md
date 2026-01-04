@@ -65,6 +65,15 @@ show-positions: true
 interval: 5
 currency: USD
 currency-summary-only: false
+key-bindings:
+  quit: ["q", "esc", "ctrl+c"]
+  scroll-up: ["k", "up"]
+  scroll-down: ["j", "down"]
+  page-up: ["ctrl+b"]
+  page-down: ["ctrl+f"]
+  next-group: ["tab"]
+  prev-group: ["shift+tab"]
+  change-sort: ["s"]
 watchlist:
   - NET
   - TEAM
