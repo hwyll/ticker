@@ -63,7 +63,7 @@ func DefaultKeyBindings() KeyBindings {
 	}
 }
 
-func mergeKeyBindings(userBindings *c.KeyBindings, defaults c.KeyBindings) {
+func mergeKeyBindings(userBindings *KeyBindings, defaults KeyBindings) {
 	v := reflect.ValueOf(userBindings).Elem()
 	d := reflect.ValueOf(defaults)
 
