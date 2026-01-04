@@ -1,9 +1,7 @@
 project_name: ticker
-
 before:
   hooks:
     - go mod download
-
 builds:
   - id: build-mac
     main: ./main.go
@@ -13,7 +11,6 @@ builds:
       - darwin
     ldflags:
       - -s -w -X 'github.com/hwyll/ticker/v5/cmd.Version={{.Version}}'
-
 archives:
   - id: release
     format: tar.gz
@@ -23,24 +20,20 @@ archives:
       {{- if eq .Os "darwin" }}mac
       {{- else}}{{ .Os }}{{ end }}-
       {{- .Arch }}
-
 snapshot:
   name_template: "{{ .Tag }}-next"
-
 checksum:
   name_template: "{{ .ProjectName }}-{{ .Version }}-checksums.txt"
-
 release:
   github:
-      owner: hwyll
-      name: ticker
-
+    owner: hwyll
+    name: ticker
 brews:
   - name: ticker
     repository:
       owner: hwyll
       name: homebrew-tap
-      token: {{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}
+      token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
     folder: Formula
     commit_author:
       name: hwyll
@@ -48,3 +41,5 @@ brews:
     homepage: "https://github.com/hwyll/ticker"
     description: "Terminal stock ticker with live updates and position tracking"
     license: "GPLv3"
+    install: |
+      bin.install "ticker"
