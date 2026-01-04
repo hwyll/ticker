@@ -238,32 +238,30 @@ func GetConfig(dep c.Dependencies, configPath string, options Options) (c.Config
 func getConfigPath(fs afero.Fs, configPathOption string) (string, error) {
 	var err error
 	if configPathOption != "" {
-		fmt.Printf("DEBUG: Using explicit config path: %s\n", configPathOption)
 		return configPathOption, nil
 	}
-	home, _ := homedir.Dir()
-	fmt.Printf("DEBUG: Home dir: %s\n", home)
-	fmt.Printf("DEBUG: XDG ConfigHome: %s\n", xdg.ConfigHome)
+	home, err := homedir.Dir()
+	if err != nil {
+		return "", fmt.Errorf("could not determine home directory: %w", err)
+	}
 	
 	v := viper.New()
 	v.SetFs(fs)
 	v.SetConfigType("yaml")
-	v.AddConfigPath(home)
-	v.AddConfigPath(".")
-	v.AddConfigPath(xdg.ConfigHome)
-	v.AddConfigPath(xdg.ConfigHome + "/ticker")
-	v.SetConfigName(".ticker")
+	v.AddConfigPath(home)                                    // ~/.ticker.yaml
+	v.AddConfigPath(filepath.Join(home, ".config/ticker"))   // ~/.config/ticker/ticker.yaml
+	v.SetConfigName("ticker")
 	
-	fmt.Printf("DEBUG: About to call ReadInConfig\n")
 	err = v.ReadInConfig()
 	if err != nil {
-		fmt.Printf("DEBUG: ReadInConfig error: %v\n", err)
-		return "", fmt.Errorf("invalid config: %w", err)
+		// Also try with dot prefix for backwards compatibility with ~/.ticker.yaml
+		v.SetConfigName(".ticker")
+		err = v.ReadInConfig()
+		if err != nil {
+			return "", fmt.Errorf("invalid config: %w", err)
+		}
 	}
-	
-	configPath := v.ConfigFileUsed()
-	fmt.Printf("DEBUG: Config file used: %s\n", configPath)
-	return configPath, nil
+	return v.ConfigFileUsed(), nil
 }
 
 func getRefreshInterval(optionsRefreshInterval int, configRefreshInterval int) int {
