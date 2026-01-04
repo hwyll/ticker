@@ -37,9 +37,11 @@ release:
 
 brews:
   - name: ticker
-    tap:
+    repository:
       owner: hwyll
       name: homebrew-tap
+      token: " .Env.HOMEBREW_TAP_GITHUB_TOKEN"
+    folder: Formula
     commit_author:
       name: hwyll
       email: hwyll@users.noreply.github.com 
